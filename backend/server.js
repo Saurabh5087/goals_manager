@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 // Route for CRUD on Goals
 app.use('/api/goals', require('./routes/goalRoutes'));
 
+// Route for CRUD on User
+app.use('/api/users', require('./routes/userRoutes'));
+
 // Middleware for Custom ErrorHandling
 app.use(errorHandler);
 
