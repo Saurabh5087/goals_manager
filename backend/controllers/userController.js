@@ -72,7 +72,16 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-  res.json({message: 'User Data displayed'})
+  // req,user is the one who successfully authenticated through
+  // the authMiddleware which was called because this route is protected and the
+  // user requested for the protected endpoint /api/users/me
+  const { _id, name, email } = await User.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email
+  })
 })
 
 // Generate JSON Web Token
